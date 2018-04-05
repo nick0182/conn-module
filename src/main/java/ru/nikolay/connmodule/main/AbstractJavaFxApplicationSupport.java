@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Import;
 import ru.nikolay.connmodule.spring.SpringJavaConfig;
 
 @SpringBootApplication
-@ComponentScan("ru.nikolay")
 @Import(SpringJavaConfig.class)
 public abstract class AbstractJavaFxApplicationSupport extends Application {
 
@@ -20,7 +19,9 @@ public abstract class AbstractJavaFxApplicationSupport extends Application {
 
     @Override
     public void init() throws Exception {
+        // в переопределенном методе init (точка инициализации Java FX проекта) запускаем инициализацию Spring Boot
         context = SpringApplication.run(AbstractJavaFxApplicationSupport.class, savedArgs);
+        // заполняем контекст бинами
         context.getAutowireCapableBeanFactory().autowireBean(this);
     }
 

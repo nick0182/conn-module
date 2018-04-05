@@ -1,9 +1,10 @@
+// TODO https://habrahabr.ru/post/265511/
+
 package ru.nikolay.connmodule.main;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import ru.nikolay.connmodule.main.AbstractJavaFxApplicationSupport;
 import ru.nikolay.connmodule.ui.ViewHolder;
 
 public class ConnModuleApplication extends AbstractJavaFxApplicationSupport {

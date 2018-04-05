@@ -15,11 +15,13 @@ public class RootLayoutController {
     private Button connectBtn;
 
 
+    @FXML
+    public void initialize() {
+    }
+
     @PostConstruct
     private void init() {
 
-        connectBtn.setOnAction(event -> {
-            System.err.println("HAY!");
-        });
+        connectBtn.setOnAction(event -> System.err.println("HAY!"));
     }
 }

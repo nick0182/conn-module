@@ -3,6 +3,7 @@ package ru.nikolay.connmodule.spring;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import ru.nikolay.connmodule.ui.ViewHolder;
 import ru.nikolay.connmodule.ui.controllers.RootLayoutController;
@@ -10,6 +11,7 @@ import ru.nikolay.connmodule.ui.controllers.RootLayoutController;
 import java.io.IOException;
 
 @Configuration
+@ComponentScan("ru.nikolay")
 public class SpringJavaConfig {
 
     @Bean
