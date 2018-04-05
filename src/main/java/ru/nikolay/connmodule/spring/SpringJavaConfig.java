@@ -2,11 +2,13 @@ package ru.nikolay.connmodule.spring;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import ru.nikolay.connmodule.ui.ViewHolder;
 import ru.nikolay.connmodule.ui.controllers.RootLayoutController;
+import ru.nikolay.connmodule.ui.controllers.Test;
 
 import java.io.IOException;
 
@@ -22,6 +24,12 @@ public class SpringJavaConfig {
     @Bean
     public RootLayoutController rootLayoutController() throws IOException {
         return (RootLayoutController) rootLayout().getController();
+    }
+
+    @Bean
+    @Autowired
+    public Test test(RootLayoutController rootLayoutController) {
+        return new Test(rootLayoutController);
     }
 
     @SuppressWarnings("unchecked")

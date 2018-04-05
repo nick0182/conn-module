@@ -24,4 +24,8 @@ public class RootLayoutController {
 
         connectBtn.setOnAction(event -> System.err.println("HAY!"));
     }
+
+    public void sayHello() {
+        System.err.println("Hello");
+    }
 }
