@@ -22,14 +22,15 @@ public class ConnectCallable implements Callable<Boolean> {
     public Boolean call() {
         try {
             InetAddress serverAddr = InetAddress.getByName(ip);
-            if (!serverAddr.isReachable(1000))
+            tcpMasterConnection = new TCPMasterConnection(serverAddr);
+            if (!serverAddr.isReachable(1000)) {
                 return false;
+            }
 
             if(tcpMasterConnection != null && tcpMasterConnection.isConnected()) {
                 tcpMasterConnection.close();
             }
 
-            tcpMasterConnection = new TCPMasterConnection(serverAddr);
             tcpMasterConnection.setPort(Integer.parseInt(port));
             tcpMasterConnection.setTimeout(1000);
 
@@ -43,6 +44,8 @@ public class ConnectCallable implements Callable<Boolean> {
     }
 
     public boolean isConnected() {
+        if(tcpMasterConnection == null)
+            return false;
         return tcpMasterConnection.isConnected();
     }
 

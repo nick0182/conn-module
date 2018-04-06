@@ -13,6 +13,7 @@ import net.wimpi.modbus.msg.ReadInputRegistersResponse;
 import ru.nikolay.connmodule.device.connect.ModBusConnect;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 public class RootLayoutController {
 
@@ -79,5 +80,10 @@ public class RootLayoutController {
 
     private boolean isConnected() {
         return modBusConnect.isConnected();
+    }
+
+    @PreDestroy
+    private void stop() {
+        modBusConnect.disconnect();
     }
 }

@@ -4,6 +4,7 @@ import net.wimpi.modbus.ModbusException;
 import net.wimpi.modbus.io.ModbusTCPTransaction;
 import net.wimpi.modbus.msg.ModbusRequest;
 import net.wimpi.modbus.msg.ModbusResponse;
+import net.wimpi.modbus.net.TCPMasterConnection;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -16,6 +17,7 @@ public class ModBusConnect {
     private ConnectCallable connectCallable;
     private Future<Boolean> connectStatus;
     private ModbusTCPTransaction modbusTCPTransaction;
+    private TCPMasterConnection conn;
 
     public boolean connect(String ip, String port) {
 
@@ -51,5 +53,15 @@ public class ModBusConnect {
         getTransaction().setRequest(request);
         getTransaction().execute();
         return getTransaction().getResponse();
+    }
+
+    public void disconnect() {
+        if (executorService != null)
+            executorService.shutdown();
+        if (connectCallable != null && connectCallable.isConnected()) {
+            conn = connectCallable.getConnection();
+            if (conn != null)
+                conn.close();
+        }
     }
 }
