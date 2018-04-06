@@ -41,4 +41,12 @@ public class ConnectCallable implements Callable<Boolean> {
             return false;
         }
     }
+
+    public boolean isConnected() {
+        return tcpMasterConnection.isConnected();
+    }
+
+    public TCPMasterConnection getConnection() {
+        return tcpMasterConnection;
+    }
 }
