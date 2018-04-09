@@ -17,7 +17,6 @@ public class ModBusConnect {
     private ConnectCallable connectCallable;
     private Future<Boolean> connectStatus;
     private ModbusTCPTransaction modbusTCPTransaction;
-    private TCPMasterConnection conn;
 
     public boolean connect(String ip, String port) {
 
@@ -59,7 +58,7 @@ public class ModBusConnect {
         if (executorService != null)
             executorService.shutdown();
         if (connectCallable != null && connectCallable.isConnected()) {
-            conn = connectCallable.getConnection();
+            TCPMasterConnection conn = connectCallable.getConnection();
             if (conn != null)
                 conn.close();
         }
